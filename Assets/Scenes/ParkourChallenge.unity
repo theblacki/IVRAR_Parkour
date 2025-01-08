@@ -3632,7 +3632,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 959aa7e791a1c404194efb0ade09c3ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controller: 2
   selectionTaskMeasure: {fileID: 1487194128}
 --- !u!135 &207417616
 SphereCollider:
@@ -6215,7 +6214,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 959aa7e791a1c404194efb0ade09c3ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controller: 1
   selectionTaskMeasure: {fileID: 1487194128}
 --- !u!135 &404658275
 SphereCollider:
@@ -23427,7 +23425,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f90b35ff978b384489586b480a6ccd4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  locomotionTech: {fileID: 1757178241}
+  ogm: {fileID: 0}
   isStageChange: 0
   startBanner: {fileID: 1916314528}
   firstBanner: {fileID: 100572341}
@@ -23486,7 +23484,7 @@ MonoBehaviour:
   taskTime: 0
   taskUI: {fileID: 701425950}
   parkourCounter: {fileID: 1487194127}
-  dataRecording: {fileID: 0}
+  dataRecording: {fileID: 1487194129}
   partSumTime: 0
   partSumErr: 0
 --- !u!114 &1487194129
@@ -34091,6 +34089,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1757178246}
+    - targetCorrespondingSourceObject: {fileID: 2483171112401766338, guid: f54012181eacade4ea242c65f804720f,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1757178249}
     - targetCorrespondingSourceObject: {fileID: 7239993999906927901, guid: f54012181eacade4ea242c65f804720f,
         type: 3}
       insertIndex: -1
@@ -34299,6 +34301,22 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &1757178249
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1757178240}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22b0ac9fd8063e34798f206095c36d1e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hmd: {fileID: 835662726}
+  parkourCounter: {fileID: 1487194127}
+  stage: 
+  selectionTaskMeasure: {fileID: 1487194128}
 --- !u!4 &1757697269 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 407752, guid: b75d513df2c5cdb408d4a022c98cf202,

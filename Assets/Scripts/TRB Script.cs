@@ -15,10 +15,10 @@ public class TRBScript : MonoBehaviour
 
     private static readonly string playerTag = "Player";
     private Rigidbody rb;
-    private Queue<Vector3> oldPositions = new();
+    private readonly Queue<Vector3> oldPositions = new();
     private bool isCurrentlyGrabbed;
     
-    private bool isGrabbing => (OVRInput.Get(OVRInput.Axis1D.SecondaryIndexTrigger) > .1f
+    private bool IsGrabbing => (OVRInput.Get(OVRInput.Axis1D.SecondaryIndexTrigger) > .1f
                             || OVRInput.Get(OVRInput.Axis1D.SecondaryHandTrigger) > .1f)
                             && true;//object is in hand - via collider?
     private Transform Transform => GetComponent<Transform>();
@@ -33,8 +33,8 @@ public class TRBScript : MonoBehaviour
     void Update()
     {
         //calculate control inputs - grab, teleport, return
-        bool letGo = isCurrentlyGrabbed && !isGrabbing;
-        isCurrentlyGrabbed = isGrabbing;
+        bool letGo = isCurrentlyGrabbed && !IsGrabbing;
+        isCurrentlyGrabbed = IsGrabbing;
         bool doTeleport = OVRInput.GetDown(OVRInput.Button.One);
         bool doReturn = OVRInput.Get(OVRInput.Button.Three);
 
@@ -66,7 +66,7 @@ public class TRBScript : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (!isGrabbing)
+        if (!IsGrabbing)
         {
             rb.AddForce(Vector3.down * gravityMultiplier, ForceMode.Force);
         }

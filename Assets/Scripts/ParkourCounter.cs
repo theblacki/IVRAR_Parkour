@@ -3,7 +3,7 @@ using TMPro;
 
 public class ParkourCounter : MonoBehaviour
 {
-    public LocomotionTechnique locomotionTech;
+    public OriginalGameMechanics ogm;
     public bool isStageChange;
     // banners
     public GameObject startBanner;
@@ -69,7 +69,7 @@ public class ParkourCounter : MonoBehaviour
         if (isStageChange)
         {
             isStageChange = false;
-            if (locomotionTech.stage == startBanner.name)
+            if (ogm.stage == startBanner.name)
             {
                 parkourStart = true;
                 startBanner.SetActive(false);
@@ -79,7 +79,7 @@ public class ParkourCounter : MonoBehaviour
                 GetComponent<SelectionTaskMeasure>().taskUI.transform.position = objIX1.transform.position;
                 currentRespawnPos = start2FirstRespawn.position;
             }
-            else if (locomotionTech.stage == firstBanner.name)
+            else if (ogm.stage == firstBanner.name)
             {
                 firstBanner.SetActive(false);
                 firstCoins.SetActive(false);
@@ -93,7 +93,7 @@ public class ParkourCounter : MonoBehaviour
                 currentRespawnPos = first2SecondRespawn.position;
                 UpdateRecordText(1, part1Time, part1Count, 16);
             }
-            else if (locomotionTech.stage == secondBanner.name)
+            else if (ogm.stage == secondBanner.name)
             {
                 secondBanner.SetActive(false);
                 secondCoins.SetActive(false);
@@ -107,7 +107,7 @@ public class ParkourCounter : MonoBehaviour
                 currentRespawnPos = second2FinalRespawn.position;
                 UpdateRecordText(2, part2Time, part2Count, 30);
             }
-            else if (locomotionTech.stage == finalBanner.name)
+            else if (ogm.stage == finalBanner.name)
             {
                 parkourStart = false;
                 finalCoins.SetActive(false);

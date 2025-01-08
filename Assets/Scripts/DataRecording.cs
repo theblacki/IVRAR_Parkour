@@ -29,15 +29,4 @@ public class DataRecording : MonoBehaviour
     {
         dataList.Add(new ObjectInteractionData(round, number, taskTime, error));
     }
-
-
-    void Start()
-    {
-        
-    }
-
-    void Update()
-    {
-        
-    }
 }
