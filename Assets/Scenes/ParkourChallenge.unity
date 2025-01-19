@@ -6263,6 +6263,21 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &404658279
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 404658271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ecd3e35a7a8d5d349ae678c1b559172b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nrOldPositions: 25
+  remoteControlSpeed: 10
+  teleRollingBoard: {fileID: 1003432152}
 --- !u!1001 &404839097
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16407,6 +16422,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b75d513df2c5cdb408d4a022c98cf202, type: 3}
+--- !u!1 &1003432152 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3432909089376278865, guid: 45e4a11bf4d11684abb4af1a76f4c7f2,
+    type: 3}
+  m_PrefabInstance: {fileID: 3365218648715614025}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1009334787
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -34130,6 +34151,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 404658273}
+    - targetCorrespondingSourceObject: {fileID: 7239993999906927901, guid: f54012181eacade4ea242c65f804720f,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 404658279}
     - targetCorrespondingSourceObject: {fileID: 3079314865701777818, guid: f54012181eacade4ea242c65f804720f,
         type: 3}
       insertIndex: -1
@@ -34161,18 +34186,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b1aab3debee6d846bbfa7ea3d48cdce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  leftController: 1
-  rightController: 2
-  translationGain: 0.5
-  hmd: {fileID: 835662726}
-  leftTriggerValue: 0
-  rightTriggerValue: 0
-  startPos: {x: 0, y: 0, z: 0}
-  offset: {x: 0, y: 0, z: 0}
-  isIndexTriggerDown: 0
-  parkourCounter: {fileID: 1487194127}
-  stage: 
-  selectionTaskMeasure: {fileID: 1487194128}
 --- !u!1 &1757178242 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3642352042163518208, guid: f54012181eacade4ea242c65f804720f,
@@ -39964,7 +39977,7 @@ PrefabInstance:
     - target: {fileID: 4666806460254898289, guid: 45e4a11bf4d11684abb4af1a76f4c7f2,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.005
+      value: 0.277
       objectReference: {fileID: 0}
     - target: {fileID: 4666806460254898289, guid: 45e4a11bf4d11684abb4af1a76f4c7f2,
         type: 3}
@@ -40003,7 +40016,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6743220779647696929, guid: 45e4a11bf4d11684abb4af1a76f4c7f2,
         type: 3}
-      propertyPath: Player
+      propertyPath: player
       value: 
       objectReference: {fileID: 1757178242}
     - target: {fileID: 6743220779647696929, guid: 45e4a11bf4d11684abb4af1a76f4c7f2,
@@ -40011,10 +40024,23 @@ PrefabInstance:
       propertyPath: leftHandTransform
       value: 
       objectReference: {fileID: 1974943624}
+    - target: {fileID: 8366768023227648160, guid: 45e4a11bf4d11684abb4af1a76f4c7f2,
+        type: 3}
+      propertyPath: parkourCounter
+      value: 
+      objectReference: {fileID: 1487194127}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2674415333114341534, guid: 45e4a11bf4d11684abb4af1a76f4c7f2,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
+    - targetCorrespondingSourceObject: {fileID: 8812023453984827080, guid: 45e4a11bf4d11684abb4af1a76f4c7f2,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 45e4a11bf4d11684abb4af1a76f4c7f2, type: 3}
 --- !u!1001 &3942613374457514550
 PrefabInstance:
