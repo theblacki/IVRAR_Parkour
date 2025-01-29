@@ -8,29 +8,40 @@ public class RemoteBoardControl : MonoBehaviour
     public float remoteControlSpeed;
 
     public GameObject teleRollingBoard;
-    private readonly Queue<Tuple<Vector3, Vector3>> oldPositions = new();
+    private readonly Queue<Vector3> oldRotations = new();
+    private Vector3 initialPosition = new();
+    private bool initialSet = false;
 
     private TRBScript TrbScript => teleRollingBoard.GetComponent<TRBScript>();
 
     void Update()
     {
         //only act if grabbing with left hand without contact
-        if (!TrbScript.IsGrabbingRight && (OVRInput.Get(OVRInput.Axis1D.PrimaryIndexTrigger) > .1f
+        if (!TrbScript.IsGrabbingLeft && (OVRInput.Get(OVRInput.Axis1D.PrimaryIndexTrigger) > .1f
                                         || OVRInput.Get(OVRInput.Axis1D.PrimaryHandTrigger) > .1f))
         {
-            Vector3 movement = (transform.position - oldPositions.Peek().Item1) * remoteControlSpeed;
-            if (movement.magnitude > TrbScript.maxSpeed) movement = movement.normalized * TrbScript.maxSpeed;
+            if (!initialSet)
+            {
+                initialSet = true;
+                initialPosition = transform.position;
+            }
+            Vector3 movement = (transform.position - initialPosition) * remoteControlSpeed;
+            if (movement.magnitude > TrbScript.maxSpeed * TrbScript.speedSlider.sliderValue) movement = TrbScript.maxSpeed * TrbScript.speedSlider.sliderValue * movement.normalized;
             Rigidbody rb = teleRollingBoard.GetComponent<Rigidbody>();
             rb.AddForce(movement, ForceMode.VelocityChange);
-            rb.angularVelocity = (transform.eulerAngles - oldPositions.Peek().Item2) / nrOldPositions;
+            rb.angularVelocity = (transform.eulerAngles - oldRotations.Peek()) * remoteControlSpeed / nrOldPositions;
         }
-        else oldPositions.Clear();
+        else
+        {
+            initialSet = false;
+            oldRotations.Clear();
+        }
     }
 
     private void FixedUpdate()
     {
         //update position queue (don't care about delta)
-        oldPositions.Enqueue(Tuple.Create(transform.position, transform.eulerAngles));
-        if (oldPositions.Count > nrOldPositions) oldPositions.Dequeue();
+        oldRotations.Enqueue(transform.eulerAngles);
+        if (oldRotations.Count > nrOldPositions) oldRotations.Dequeue();
     }
 }

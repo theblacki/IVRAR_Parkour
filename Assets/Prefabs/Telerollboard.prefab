@@ -222,6 +222,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5002010685216581174}
+  - component: {fileID: 2137542181030324244}
   m_Layer: 0
   m_Name: RangeSlider
   m_TagString: Untagged
@@ -238,7 +239,7 @@ Transform:
   m_GameObject: {fileID: 763294579961517485}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.146}
+  m_LocalPosition: {x: 0, y: 0, z: -0.172}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -247,6 +248,19 @@ Transform:
   - {fileID: 993981752129299482}
   m_Father: {fileID: 4369650538373409160}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2137542181030324244
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 763294579961517485}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10ceb4cc66b11b4488a3a68b303ce878, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sliderValue: 0.5
 --- !u!1 &1644199458430667430
 GameObject:
   m_ObjectHideFlags: 0
@@ -362,8 +376,8 @@ Transform:
   m_GameObject: {fileID: 2646055326830784120}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.216, z: 0}
-  m_LocalScale: {x: 0.1, y: 0.5, z: 0.1}
+  m_LocalPosition: {x: 0, y: 0.389, z: 0}
+  m_LocalScale: {x: 0.2, y: 1, z: 0.2}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 9122342929578458456}
@@ -437,7 +451,7 @@ SphereCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -496,7 +510,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2674415333114341534}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 0.0869}
+  m_LocalPosition: {x: 0, y: 0, z: 0.132}
   m_LocalScale: {x: 0.02, y: 0.02, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -695,7 +709,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 119
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -844,7 +858,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: -0.024, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.125, z: 0.5}
+  m_LocalScale: {x: 1, y: 0.25, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5945790083943193837}
@@ -947,8 +961,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.0044606, y: 0.20037256, z: 1.1540754}
-  m_Center: {x: 0, y: 0.100168675, z: 0}
+  m_Size: {x: 1.0044606, y: 0.231932, z: 1.1540754}
+  m_Center: {x: 0, y: 0.11594839, z: 0}
 --- !u!54 &90402054160736674
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -988,15 +1002,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c632014ea1b21a4fa334fa4c14a2405, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  throwingSpeed: 5
+  throwingSpeed: 12
   maxSpeed: 100
-  gravityMultiplier: 3
-  maxRange: 25
+  gravityMultiplier: 10
+  maxRange: 44
   nrOldPositions: 15
   leftHandTransform: {fileID: 0}
+  playerYOffset: -0.22
+  flyInputStrength: 1
   player: {fileID: 0}
   teleportSound: {fileID: 8300000, guid: 15e6a665b2a1d384785edb03ab3f09cf, type: 3}
   slidersChild: {fileID: 5752094751687760073}
+  speedSlider: {fileID: 5173240641958429275}
+  rangeSlider: {fileID: 2137542181030324244}
 --- !u!82 &3793447747086428854
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1010,7 +1028,7 @@ AudioSource:
   m_audioClip: {fileID: 8300000, guid: 5434a66c0902a9045a97eef52844a7b0, type: 3}
   m_Resource: {fileID: 8300000, guid: 5434a66c0902a9045a97eef52844a7b0, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.5
+  m_Volume: 0.38
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -1019,9 +1037,9 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 10
+  MaxDistance: 15
   Pan2D: 0
-  rolloffMode: 1
+  rolloffMode: 2
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -1029,23 +1047,50 @@ AudioSource:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: 0
+      time: 0.046666212
       value: 1
-      inSlope: 0
-      outSlope: 0
+      inSlope: -15.005997
+      outSlope: -15.005997
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.1308309
+      value: 0.4889679
+      inSlope: -3.7514992
+      outSlope: -3.7514992
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.26666668
+      value: 0.25
+      inSlope: -0.9378748
+      outSlope: -0.9378748
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.53333336
+      value: 0.125
+      inSlope: -0.2344687
+      outSlope: -0.2344687
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
     - serializedVersion: 3
       time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
+      value: 0.06666667
+      inSlope: -0.06669331
+      outSlope: -0.06669331
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
+      inWeight: 0
+      outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
@@ -1103,6 +1148,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2970775558620608295}
+  - component: {fileID: 5173240641958429275}
   m_Layer: 0
   m_Name: SpeedSlider
   m_TagString: Untagged
@@ -1119,7 +1165,7 @@ Transform:
   m_GameObject: {fileID: 3966255797426586650}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.151}
+  m_LocalPosition: {x: 0, y: 0, z: 0.136}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1128,6 +1174,19 @@ Transform:
   - {fileID: 6154786909502069377}
   m_Father: {fileID: 4369650538373409160}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5173240641958429275
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3966255797426586650}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10ceb4cc66b11b4488a3a68b303ce878, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sliderValue: 0.5
 --- !u!1 &3972386149328679467
 GameObject:
   m_ObjectHideFlags: 0
@@ -1240,7 +1299,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4358341542605822260}
@@ -1394,8 +1453,8 @@ Transform:
   m_GameObject: {fileID: 6228782582294556141}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.216, z: 0}
-  m_LocalScale: {x: 0.1, y: 0.5, z: 0.1}
+  m_LocalPosition: {x: 0, y: 0.389, z: 0}
+  m_LocalScale: {x: 0.2, y: 1, z: 0.2}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5241242852083630633}
@@ -1469,7 +1528,7 @@ SphereCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -2126,7 +2185,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8812023453984827080}
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 0.0869}
+  m_LocalPosition: {x: 0, y: 0, z: 0.132}
   m_LocalScale: {x: 0.02, y: 0.019999996, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2134,7 +2193,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0.004999999}
+  m_AnchoredPosition: {x: 0, y: 0.005}
   m_SizeDelta: {x: 20, y: 5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!23 &1027409068796373884

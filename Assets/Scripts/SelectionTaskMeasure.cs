@@ -85,7 +85,7 @@ public class SelectionTaskMeasure : MonoBehaviour
         partSumTime += taskTime;
         dataRecording.AddOneData(parkourCounter.ogm.stage.ToString(), completeCount, taskTime, manipulationError);
 
-        Debug.Log("Time: " + taskTime.ToString("F1") + "\nPrecision: " + manipulationError.magnitude.ToString("F1"));
+        Debug.LogWarning("Time: " + taskTime.ToString("F1") + "\nPrecision: " + manipulationError.magnitude.ToString("F1"));
         Destroy(objectT);
         Destroy(targetT);
         StartCoroutine(Countdown(3f));
