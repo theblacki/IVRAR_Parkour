@@ -81,7 +81,7 @@ public class TRBScript : MonoBehaviour
 
         if (takeInHand)
         {
-            rb.angularVelocity = Vector3.zero;
+            Stop();
         }
 
         if (isCurrentlyGrabbed) floatAfterQueue.Clear();
@@ -93,7 +93,6 @@ public class TRBScript : MonoBehaviour
             if (movement.magnitude > maxSpeed * speedSlider.sliderValue) movement = maxSpeed * speedSlider.sliderValue * movement.normalized;
             rb.AddForce(movement, ForceMode.VelocityChange);
             rb.angularVelocity = new Vector3(0, (transform.eulerAngles.y - oldPositions.Peek().Item2.y) / nrOldPositions, 0);
-            Debug.LogWarning("Throw with movement: " + movement.ToString() + " and AngularVelocity: " + rb.angularVelocity);
             justLetGo = true;
         }
 
@@ -102,8 +101,7 @@ public class TRBScript : MonoBehaviour
         {
             transform.position = leftHandTransform.position + leftHandTransform.right * .1f;
             floatAfterQueue.Clear();
-            rb.angularVelocity = Vector3.zero;
-            rb.AddForce(Vector3.zero, ForceMode.VelocityChange);
+            Stop();
         }
 
         //resolve teleport player
@@ -127,10 +125,16 @@ public class TRBScript : MonoBehaviour
         }
     }
 
-    private void TeleportPlayer(Vector3 newPosition)
+    public void TeleportPlayer(Vector3 newPosition)
     {
         player.transform.position = Physics.Raycast(newPosition, Vector3.down, out RaycastHit hit, 1f, geometryLayer) ?
             hit.point + new Vector3(0, playerYOffset, 0) : newPosition;
+    }
+
+    private void Stop()
+    {
+        rb.angularVelocity = Vector3.zero;
+        rb.linearVelocity = Vector3.zero;
     }
 
     private void FixedUpdate()

@@ -26,7 +26,7 @@ public class SelectionTaskMeasure : MonoBehaviour
     private int part;
     public float partSumTime;
     public float partSumErr;
-
+    public GameObject trb;
 
     // Start is called before the first frame update
     void Start()
@@ -72,13 +72,12 @@ public class SelectionTaskMeasure : MonoBehaviour
         
         // release
         isTaskEnd = true;
-        isTaskStart = false;
         
         // distance error
         manipulationError = Vector3.zero;
-        for (int i = 0; i < targetT.transform.childCount; i++)
+        for (int i = 0; i < 6; i++)
         {
-            manipulationError += targetT.transform.GetChild(i).transform.position - objectT.transform.GetChild(i).transform.position;
+            manipulationError += targetT.transform.GetChild(0).GetChild(0).GetChild(i).transform.position - objectT.transform.GetChild(0).GetChild(0).GetChild(i).transform.position;
         }
         scoreText.text = scoreText.text + "Time: " + taskTime.ToString("F1") + ", offset: " + manipulationError.magnitude.ToString("F2") + "\n";
         partSumErr += manipulationError.magnitude;
@@ -104,6 +103,7 @@ public class SelectionTaskMeasure : MonoBehaviour
             scoreText.text = "Done Part" + part.ToString();
             part += 1;
             completeCount = 0;
+            trb.SetActive(true);
         }
         else
         {

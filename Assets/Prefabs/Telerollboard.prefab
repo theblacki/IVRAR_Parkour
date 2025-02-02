@@ -704,17 +704,17 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 192
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 119
+    m_Bits: 823
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 9.881975, z: 1}
-  m_Center: {x: 0, y: 4.4409866, z: 0}
+  m_Size: {x: 1, y: 9.624331, z: 1}
+  m_Center: {x: 0, y: 4.5698085, z: 0}
 --- !u!82 &7555535872436120913
 AudioSource:
   m_ObjectHideFlags: 0
@@ -824,7 +824,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b2e299100a549744a9e77058847fcf1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parkourCounter: {fileID: 0}
+  ogm: {fileID: 0}
 --- !u!1 &3432909089376278865
 GameObject:
   m_ObjectHideFlags: 0
@@ -836,7 +836,6 @@ GameObject:
   - component: {fileID: 4358341542605822260}
   - component: {fileID: 3339041628564823329}
   - component: {fileID: 8306133120008972277}
-  - component: {fileID: 14944329451512571}
   - component: {fileID: 6766919499592144291}
   - component: {fileID: 90402054160736674}
   - component: {fileID: 6743220779647696929}
@@ -921,27 +920,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &14944329451512571
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3432909089376278865}
-  m_Material: {fileID: 13400000, guid: c61dbf2765acf474e8a1309e030730ce, type: 2}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 0.41277814, z: 1}
-  m_Center: {x: 0, y: -0.3341192, z: 0}
 --- !u!65 &6766919499592144291
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -952,10 +930,10 @@ BoxCollider:
   m_Material: {fileID: 13400000, guid: d4db0ce32aa430547b5317ef1b516475, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 769
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 246
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0

@@ -34,7 +34,6 @@ public class RemoteBoardControl : MonoBehaviour
         else
         {
             initialSet = false;
-            oldRotations.Clear();
         }
     }
 
