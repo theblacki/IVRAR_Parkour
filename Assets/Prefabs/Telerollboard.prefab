@@ -980,7 +980,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c632014ea1b21a4fa334fa4c14a2405, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  throwingSpeed: 12
+  throwingSpeed: 14
   maxSpeed: 100
   gravityMultiplier: 10
   maxRange: 44
@@ -1006,7 +1006,7 @@ AudioSource:
   m_audioClip: {fileID: 8300000, guid: 5434a66c0902a9045a97eef52844a7b0, type: 3}
   m_Resource: {fileID: 8300000, guid: 5434a66c0902a9045a97eef52844a7b0, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.38
+  m_Volume: 0.33
   m_Pitch: 1
   Loop: 1
   Mute: 0

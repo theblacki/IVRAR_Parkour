@@ -29,7 +29,7 @@ public class RemoteBoardControl : MonoBehaviour
             if (movement.magnitude > TrbScript.maxSpeed * TrbScript.speedSlider.sliderValue) movement = TrbScript.maxSpeed * TrbScript.speedSlider.sliderValue * movement.normalized;
             Rigidbody rb = teleRollingBoard.GetComponent<Rigidbody>();
             rb.AddForce(movement, ForceMode.VelocityChange);
-            rb.angularVelocity = (transform.eulerAngles - oldRotations.Peek()) * remoteControlSpeed / nrOldPositions;
+            rb.angularVelocity = 0.4f * remoteControlSpeed * (transform.eulerAngles - oldRotations.Peek()) / nrOldPositions;
         }
         else
         {

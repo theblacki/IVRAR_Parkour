@@ -3,6 +3,7 @@ using UnityEngine;
 public class HandGameEvents : MonoBehaviour
 {
     public SelectionTaskMeasure selectionTaskMeasure;
+    public OriginalGameMechanics ogm;
 
     void OnTriggerEnter(Collider other)
     {
@@ -15,6 +16,10 @@ public class HandGameEvents : MonoBehaviour
         {
             selectionTaskMeasure.isTaskStart = false;
             selectionTaskMeasure.EndOneTask();
+        }
+        else
+        {
+            ogm.HandleCollision(other);
         }
     }
 }
