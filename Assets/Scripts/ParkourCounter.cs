@@ -76,7 +76,7 @@ public class ParkourCounter : MonoBehaviour
                 firstBanner.SetActive(true);
                 firstCoins.SetActive(true);
                 objIX1.SetActive(true);
-                GetComponent<SelectionTaskMeasure>().taskUI.transform.position = objIX1.transform.position;
+                GetComponent<SelectionTaskMeasure>().taskUI.transform.position = objIX1.transform.position + 0.75f * Vector3.up;
                 currentRespawnPos = start2FirstRespawn.position;
             }
             else if (ogm.stage == firstBanner.name)
@@ -87,7 +87,7 @@ public class ParkourCounter : MonoBehaviour
                 secondBanner.SetActive(true);
                 secondCoins.SetActive(true);
                 objIX2.SetActive(true);
-                GetComponent<SelectionTaskMeasure>().taskUI.transform.position = objIX2.transform.position;
+                GetComponent<SelectionTaskMeasure>().taskUI.transform.position = objIX2.transform.position + 0.75f * Vector3.up;
                 part1Time = timeCounter;
                 part1Count = coinCount;
                 currentRespawnPos = first2SecondRespawn.position;
@@ -101,7 +101,7 @@ public class ParkourCounter : MonoBehaviour
                 finalBanner.SetActive(true);
                 finalCoins.SetActive(true);
                 objIX3.SetActive(true);
-                GetComponent<SelectionTaskMeasure>().taskUI.transform.position = objIX3.transform.position;
+                GetComponent<SelectionTaskMeasure>().taskUI.transform.position = objIX3.transform.position + 0.75f * Vector3.up;
                 part2Time = timeCounter - part1Time;
                 part2Count = coinCount - part1Count;
                 currentRespawnPos = second2FinalRespawn.position;

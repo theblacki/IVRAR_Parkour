@@ -2127,10 +2127,10 @@ MonoBehaviour:
       Value: 0.32
     MinY:
       Constrain: 1
-      Value: 0
+      Value: 0.389
     MaxY:
       Constrain: 1
-      Value: 0
+      Value: 0.389
     MinZ:
       Constrain: 1
       Value: 0
