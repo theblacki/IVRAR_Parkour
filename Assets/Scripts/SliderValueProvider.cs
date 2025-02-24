@@ -11,7 +11,6 @@ public class SliderValueProvider : MonoBehaviour
         slider = gameObject.transform.GetChild(1);
     }
 
-    // Update is called once per frame
     void Update()
     {
         sliderValue = (slider.localPosition.x + radius) / (2 * radius);

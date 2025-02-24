@@ -24,8 +24,9 @@ public class RemoteBoardControl : MonoBehaviour
             {
                 initialSet = true;
                 initialPosition = transform.position;
+                TrbScript.metrics.RemoteActionUses++;
             }
-            Vector3 movement = (transform.position - initialPosition) * remoteControlSpeed;
+            Vector3 movement = (TrbScript.CurrentlyOutsideRange ? 0.2f : 1) * remoteControlSpeed * (transform.position - initialPosition);
             if (movement.magnitude > TrbScript.maxSpeed * TrbScript.speedSlider.sliderValue) movement = TrbScript.maxSpeed * TrbScript.speedSlider.sliderValue * movement.normalized;
             Rigidbody rb = teleRollingBoard.GetComponent<Rigidbody>();
             rb.AddForce(movement, ForceMode.VelocityChange);

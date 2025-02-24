@@ -24252,6 +24252,14 @@ MonoBehaviour:
   backgroundMusic: {fileID: 785232259}
   endSoundEffect: {fileID: 539912662}
   selectionTaskMeasure: {fileID: 1487194128}
+  TeleportActionUses: 0
+  MountActionUses: 0
+  ThrowActionUses: 0
+  RemoteActionUses: 0
+  RecallActionUses: 0
+  FollowActionUses: 0
+  AvgDistToGround: 0
+  AvgCount: 0
 --- !u!114 &1487194128
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -41074,6 +41082,11 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1757178242}
+    - target: {fileID: 6743220779647696929, guid: 45e4a11bf4d11684abb4af1a76f4c7f2,
+        type: 3}
+      propertyPath: metrics
+      value: 
+      objectReference: {fileID: 1487194127}
     - target: {fileID: 6743220779647696929, guid: 45e4a11bf4d11684abb4af1a76f4c7f2,
         type: 3}
       propertyPath: leftHandTransform

@@ -23,6 +23,7 @@ public class TRBScript : MonoBehaviour
     public GameObject slidersChild;
     public SliderValueProvider speedSlider;
     public SliderValueProvider rangeSlider;
+    public ParkourCounter metrics;
 
     private static readonly string playerTag = "Player";
     private Rigidbody rb;
@@ -38,15 +39,16 @@ public class TRBScript : MonoBehaviour
     public bool IsGrabbingRight => RightTrigger && isTouchedByHand;
     public bool IsGrabbingLeft => LeftTrigger && isTouchedByHand;
     public float CurrentDistance => (transform.position - player.transform.position).magnitude;
+    public bool CurrentlyOutsideRange => (CurrentDistance > maxRange * rangeSlider.sliderValue);
 
     private bool DoTeleport => OVRInput.GetDown(OVRInput.Button.One);
     private bool DoFly => OVRInput.Get(OVRInput.Button.Two);
     private bool DoReturn => OVRInput.Get(OVRInput.Button.Three);
     private bool DoFollowAfter => OVRInput.Get(OVRInput.Button.Four);
     private bool RightTrigger => (OVRInput.Get(OVRInput.Axis1D.SecondaryIndexTrigger) > .4f
-                            || OVRInput.Get(OVRInput.Axis1D.SecondaryHandTrigger) > .4f);
+                               || OVRInput.Get(OVRInput.Axis1D.SecondaryHandTrigger) > .4f);
     private bool LeftTrigger => (OVRInput.Get(OVRInput.Axis1D.PrimaryIndexTrigger) > .4f
-                            || OVRInput.Get(OVRInput.Axis1D.PrimaryHandTrigger) > .4f);
+                               || OVRInput.Get(OVRInput.Axis1D.PrimaryHandTrigger) > .4f);
 
     private void Start()
     {
@@ -59,16 +61,12 @@ public class TRBScript : MonoBehaviour
 
     private void Update()
     {
-        //Debug Info
-        if (IsGrabbingRight && !isCurrentlyGrabbed) Debug.Log("Is now grabbing");
-        if (!IsGrabbingRight && isCurrentlyGrabbed) Debug.Log("Is no longer grabbing");
-
         //calculate control inputs - grab, teleport, return
         bool letGo = isCurrentlyGrabbed && !IsGrabbingRight;
         bool takeInHand = !isCurrentlyGrabbed && (IsGrabbingRight || IsGrabbingLeft);
         isCurrentlyGrabbed = IsGrabbingRight;
 
-        rb.linearDamping = (CurrentDistance > maxRange * rangeSlider.sliderValue) ? overLimitDrag : defaultDrag;
+        rb.linearDamping = CurrentlyOutsideRange ? overLimitDrag : defaultDrag;
 
         if (IsGrabbingLeft)
         {
@@ -94,6 +92,7 @@ public class TRBScript : MonoBehaviour
             rb.AddForce(movement, ForceMode.VelocityChange);
             rb.angularVelocity = new Vector3(0, (transform.eulerAngles.y - oldPositions.Peek().Item2.y) / nrOldPositions, 0);
             justLetGo = true;
+            metrics.ThrowActionUses++;
         }
 
         //resolve return to hand
@@ -102,6 +101,8 @@ public class TRBScript : MonoBehaviour
             transform.position = leftHandTransform.position + leftHandTransform.right * .1f;
             floatAfterQueue.Clear();
             Stop();
+
+            if (OVRInput.GetDown(OVRInput.Button.Three)) metrics.RecallActionUses++;
         }
 
         //resolve teleport player
@@ -110,7 +111,7 @@ public class TRBScript : MonoBehaviour
             TeleportPlayer(transform.position);
             GetComponent<AudioSource>().PlayOneShot(teleportSound, 1);
             floatAfterQueue.Clear();
-            //maybe put the board into the right hand
+            metrics.TeleportActionUses++;
         }
 
         //resolve fly on TRB
@@ -122,6 +123,8 @@ public class TRBScript : MonoBehaviour
             rb.AddForce(flyInputStrength * horizontalInput * transform.right, ForceMode.Force);
             rb.angularVelocity = new Vector3(0, rb.angularVelocity.y, 0);
             transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
+
+            if (OVRInput.GetDown(OVRInput.Button.Two)) metrics.MountActionUses++;
         }
     }
 
@@ -141,7 +144,7 @@ public class TRBScript : MonoBehaviour
     {
         if (!RightTrigger && !LeftTrigger && !DoReturn)
         {
-            rb.AddForce(((CurrentDistance > maxRange * rangeSlider.sliderValue) ? 5 : DoFly ? 0.3f : 1) * gravityMultiplier * Vector3.down, ForceMode.Force);
+            rb.AddForce((CurrentlyOutsideRange ? 5 : DoFly ? 0.3f : 1) * gravityMultiplier * Vector3.down, ForceMode.Force);
         }
         else
         {
@@ -159,8 +162,9 @@ public class TRBScript : MonoBehaviour
         //handle follow after
         if (DoFollowAfter && floatAfterQueue.Count > 0)
         {
-                TeleportPlayer(floatAfterQueue.First.Value);
-                floatAfterQueue.RemoveFirst();
+            TeleportPlayer(floatAfterQueue.First.Value);
+            floatAfterQueue.RemoveFirst();
+            if (OVRInput.GetDown(OVRInput.Button.Four)) metrics.FollowActionUses++;
         }
 
         if (justLetGo)
@@ -168,6 +172,11 @@ public class TRBScript : MonoBehaviour
             justLetGo = false;
             transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
         }
+
+        //metrics for avg player height
+        Physics.Raycast(player.transform.position, Vector3.down, out RaycastHit hit, 1f, geometryLayer);
+        float currentHeight = player.transform.position.y - hit.point.y;
+        metrics.AvgDistToGround = (metrics.AvgDistToGround * metrics.AvgCount + currentHeight) / ++metrics.AvgCount;
     }
 
     private void OnTriggerEnter(Collider other)
